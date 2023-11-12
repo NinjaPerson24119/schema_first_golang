@@ -3,9 +3,9 @@ package repository
 import (
 	"context"
 
-	"github.com/NinjaPerson24119/schema_first_price_history/internal/database"
-	"github.com/NinjaPerson24119/schema_first_price_history/internal/sqlc"
-	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/NinjaPerson24119/schemafirstpricehistory/internal/database"
+	"github.com/NinjaPerson24119/schemafirstpricehistory/internal/sqlc"
+	"github.com/gofrs/uuid"
 )
 
 type AssetRepository struct {
@@ -26,7 +26,7 @@ func (s *AssetRepository) ListAssets(ctx context.Context) ([]sqlc.TradingAsset, 
 	return queries.ListAssets(ctx)
 }
 
-func (s *AssetRepository) GetAsset(ctx context.Context, assetID pgtype.UUID) (sqlc.TradingAsset, error) {
+func (s *AssetRepository) GetAsset(ctx context.Context, assetID uuid.UUID) (sqlc.TradingAsset, error) {
 	queries, err := s.db.GetQueries(ctx)
 	if err != nil {
 		return sqlc.TradingAsset{}, err
@@ -50,7 +50,7 @@ func (s *AssetRepository) UpdateAsset(ctx context.Context, updateParams sqlc.Upd
 	return queries.UpdateAsset(ctx, updateParams)
 }
 
-func (s *AssetRepository) DeleteAsset(ctx context.Context, assetID pgtype.UUID) error {
+func (s *AssetRepository) DeleteAsset(ctx context.Context, assetID uuid.UUID) error {
 	queries, err := s.db.GetQueries(ctx)
 	if err != nil {
 		return err

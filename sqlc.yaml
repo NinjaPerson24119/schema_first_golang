@@ -8,3 +8,15 @@ sql:
         package: "sqlc"
         out: "internal/sqlc"
         sql_package: "pgx/v5"
+        overrides:
+          # the type needs to be declared for both nullable and non-nullable
+          - db_type: "uuid"
+            go_type: "github.com/gofrs/uuid.UUID"
+          - db_type: "uuid"
+            go_type: "github.com/gofrs/uuid.UUID"
+            nullable: true
+          - db_type: "pg_catalog.numeric"
+            go_type: "github.com/shopspring/decimal.Decimal"
+          - db_type: "pg_catalog.numeric"
+            go_type: "github.com/shopspring/decimal.Decimal"
+            nullable: true

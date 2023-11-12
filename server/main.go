@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
-	assetrepository "github.com/NinjaPerson24119/schema_first_price_history/internal/asset/repository"
-	"github.com/NinjaPerson24119/schema_first_price_history/internal/database"
+	assetrepository "github.com/NinjaPerson24119/schemafirstpricehistory/internal/asset/repository"
+	"github.com/NinjaPerson24119/schemafirstpricehistory/internal/database"
 )
 
 func main() {

@@ -5,11 +5,13 @@
 package sqlc
 
 import (
+	"github.com/gofrs/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/shopspring/decimal"
 )
 
 type TradingAsset struct {
-	AssetID     pgtype.UUID
+	AssetID     uuid.UUID
 	Name        string
 	Ticker      string
 	CreatedAt   pgtype.Timestamptz
@@ -20,9 +22,9 @@ type TradingAsset struct {
 
 type TradingPriceHistory struct {
 	PriceHistoryID int64
-	AssetID        pgtype.UUID
-	PriceAssetID   pgtype.UUID
-	Price          pgtype.Numeric
+	AssetID        uuid.UUID
+	PriceAssetID   uuid.UUID
+	Price          decimal.Decimal
 	EventTime      pgtype.Timestamptz
 	CreatedAt      pgtype.Timestamptz
 	UpdatedAt      pgtype.Timestamptz

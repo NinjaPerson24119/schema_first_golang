@@ -3,21 +3,23 @@ package asset
 import (
 	"time"
 
-	"github.com/NinjaPerson24119/schema_first_price_history/internal/sqlc"
+	"github.com/NinjaPerson24119/schemafirstpricehistory/internal/sqlc"
 )
 
 // goverter:converter
 type Converter interface {
-	ConvertItems(source []sqlc.TradingAsset) []Asset
-	Convert(source sqlc.TradingAsset) Asset
+	FromRepoModels(source []sqlc.TradingAsset) []Asset
+	FromRepoModel(source sqlc.TradingAsset) Asset
+	ToCreateParams(source Asset) sqlc.CreateAssetParams
+	ToUpdateParams(source Asset) (sqlc.UpdateAssetParams, error)
 }
 
 type Asset struct {
 	AssetID     string
 	Name        string
 	Ticker      string
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
-	DeletedAt   time.Time
 	Description string
+	CreatedAt   *time.Time
+	UpdatedAt   *time.Time
+	DeletedAt   *time.Time
 }

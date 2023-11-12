@@ -8,9 +8,11 @@ run:
 
 generate:
 	sqlc generate
-	go run github.com/jmattheis/goverter/cmd/goverter@v1.0.0 gen internal/...
+	goverter gen \
+		-g "extend github.com/NinjaPerson24119/schemafirstpricehistory/internal/typeconversions:.*" \
+		github.com/NinjaPerson24119/schemafirstpricehistory/internal/asset
 
 migrate:
-	goose $(POSTGRES_CONN) up -dir migrations/ postgres "user=postgres password=postgres dbname=postgres sslmode=disable"
+	goose postgres $(POSTGRES_CONN) up -dir database/migrations
 
 FORCE: ;

@@ -4,7 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/NinjaPerson24119/schema_first_price_history/internal/sqlc"
+	"github.com/NinjaPerson24119/schemafirstpricehistory/internal/sqlc"
+	pgxuuid "github.com/jackc/pgx-gofrs-uuid"
+	pgxdecimal "github.com/jackc/pgx-shopspring-decimal"
+	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
@@ -26,6 +29,15 @@ func NewDatabase(ctx context.Context, connectionURL string) (IDatabase, error) {
 	}
 	config.MinConns = 5
 	config.MaxConns = 25
+
+	config.AfterConnect = func(ctx context.Context, conn *pgx.Conn) error {
+		// https://github.com/jackc/pgx/wiki/UUID-Support
+		pgxuuid.Register(conn.TypeMap())
+		// https://github.com/jackc/pgx/wiki/Numeric-and-decimal-support
+		pgxdecimal.Register(conn.TypeMap())
+		return nil
+	}
+
 	pool, err := pgxpool.NewWithConfig(ctx, config)
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to postgres: %v", err)

@@ -8,6 +8,7 @@ package sqlc
 import (
 	"context"
 
+	"github.com/gofrs/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
@@ -40,7 +41,7 @@ const deleteAsset = `-- name: DeleteAsset :exec
 DELETE FROM trading.asset WHERE asset_id = $1
 `
 
-func (q *Queries) DeleteAsset(ctx context.Context, assetID pgtype.UUID) error {
+func (q *Queries) DeleteAsset(ctx context.Context, assetID uuid.UUID) error {
 	_, err := q.db.Exec(ctx, deleteAsset, assetID)
 	return err
 }
@@ -49,7 +50,7 @@ const getAsset = `-- name: GetAsset :one
 SELECT asset_id, name, ticker, created_at, updated_at, deleted_at, description from trading.asset where asset_id = $1
 `
 
-func (q *Queries) GetAsset(ctx context.Context, assetID pgtype.UUID) (TradingAsset, error) {
+func (q *Queries) GetAsset(ctx context.Context, assetID uuid.UUID) (TradingAsset, error) {
 	row := q.db.QueryRow(ctx, getAsset, assetID)
 	var i TradingAsset
 	err := row.Scan(
@@ -104,7 +105,7 @@ type UpdateAssetParams struct {
 	Name        string
 	Ticker      string
 	Description pgtype.Text
-	AssetID     pgtype.UUID
+	AssetID     uuid.UUID
 }
 
 func (q *Queries) UpdateAsset(ctx context.Context, arg UpdateAssetParams) (TradingAsset, error) {
