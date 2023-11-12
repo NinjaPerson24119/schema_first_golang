@@ -1,0 +1,39 @@
+title: Asset
+x-stoplight:
+  id: 9ozxflamv2h8d
+type: object
+properties:
+  asset_id:
+    type: string
+    x-stoplight:
+      id: 89hzbn5q9wa4c
+  name:
+    type: string
+    x-stoplight:
+      id: pj5d7dx3qagq9
+  ticker:
+    type: string
+    x-stoplight:
+      id: b9sye4jwrwx0l
+  description:
+    type: string
+    x-stoplight:
+      id: xnhut926knjp8
+  created_at:
+    type: string
+    x-stoplight:
+      id: s1md0knahgwcx
+  updated_at:
+    type: string
+    x-stoplight:
+      id: x6isflvvjhe8h
+  deleted_at:
+    type: string
+    x-stoplight:
+      id: y7dlfjsj9jwkf
+required:
+  - asset_id
+  - name
+  - ticker
+  - created_at
+  - updated_at

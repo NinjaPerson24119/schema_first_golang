@@ -1,0 +1,41 @@
+title: PriceHistory
+x-stoplight:
+  id: qe026jn50teug
+type: object
+properties:
+  asset_id:
+    type: string
+    x-stoplight:
+      id: tajkl7f0vxct7
+  price_asset_id:
+    type: string
+    x-stoplight:
+      id: xfah38i4rr0mg
+  price:
+    type: string
+    x-stoplight:
+      id: qd7v07zgj3ncu
+    description: Arbitrary precision decimal
+  event_time:
+    type: string
+    x-stoplight:
+      id: sj5b7rwnjq079
+  created_at:
+    type: string
+    x-stoplight:
+      id: 9basqs95wt2b1
+  updated_at:
+    type: string
+    x-stoplight:
+      id: 1xkrqgxhkgj7b
+  deleted_at:
+    type: string
+    x-stoplight:
+      id: s9u8h5pi4i1ck
+required:
+  - asset_id
+  - price_asset_id
+  - price
+  - event_time
+  - created_at
+  - updated_at

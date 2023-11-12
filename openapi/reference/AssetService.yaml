@@ -1,0 +1,89 @@
+openapi: 3.1.0
+x-stoplight:
+  id: mre8inpo5ofa3
+info:
+  title: PriceHistoryService
+  version: '1.0'
+servers:
+  - url: 'http://localhost:7000'
+paths:
+  /assets:
+    post:
+      summary: Create Asset
+      operationId: post-asset-create
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 6yhxq7ganmn99
+      description: ''
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Asset.yaml
+    parameters: []
+    get:
+      summary: List Assets
+      operationId: get-assets
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  assets:
+                    type: array
+                    x-stoplight:
+                      id: kwzylsajrto6p
+                    items:
+                      $ref: ../models/Asset.yaml
+                      x-stoplight:
+                        id: cvb1398ma0xhv
+      x-stoplight:
+        id: zk4xdixjdnbsr
+  '/assets/{asset_id}':
+    parameters:
+      - schema:
+          type: string
+        name: asset_id
+        in: path
+        required: true
+    get:
+      summary: Get Asset
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../models/Asset.yaml
+      operationId: get-asset-asset_id
+      x-stoplight:
+        id: ubwhfpoai9qj4
+    put:
+      summary: Update Asset
+      operationId: put-assets-asset_id
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: 2e8wstsdzwyt1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../models/Asset.yaml
+    delete:
+      summary: Delete Asset
+      operationId: delete-assets-asset_id
+      responses:
+        '200':
+          description: OK
+      x-stoplight:
+        id: p744kdqb3i16c
+components:
+  schemas: {}
